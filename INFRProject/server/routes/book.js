@@ -9,7 +9,7 @@ router.get('/',async(req,res,next)=>{
     try{
         const BookList = await Book.find();
         res.render('Book/list',{
-            title:'Books',
+            title:'Expenses',
             BookList:BookList
         })
     }
@@ -37,11 +37,9 @@ router.get('/add',async(req,res,next)=>{
 router.post('/add',async(req,res,next)=>{
     try{
         let newBook = Book({
-            "name":req.body.name,
-            "Author":req.body.Author,
-            "published":req.body.published,
-            "description":req.body.description,
-            "price":req.body.price
+            "Name":req.body.Name,
+            "Amount":req.body.Amount,
+            "Date":req.body.Date
         });
         Book.create(newBook).then(()=>{
             res.redirect('/bookslist') /*Once created route back to books*/
@@ -78,11 +76,9 @@ router.post('/edit/:id',async(req,res,next)=>{
         let id=req.params.id;
         let updatedBook = Book({
             "_id":id,
-            "name":req.body.name,
-            "Author:":req.body.Author,
-            "published":req.body.published,
-            "description":req.body.description,
-            "price":req.body.price
+            "Name":req.body.Name,
+            "Amount:":req.body.Amount,
+            "Date":req.body.Date
         })
         Book.findByIdAndUpdate(id,updatedBook).then(()=>{
             res.redirect('/bookslist')
