@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 /* GET home page. */
 router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.render('home', { title: 'Home' });
 });
 /* GET dashboard us page. */
 router.get('/dashboard', function(req, res, next) {
@@ -15,7 +15,7 @@ router.get('/dashboard', function(req, res, next) {
 });
 /* GET Help page. */
 router.get('/help', function(req, res, next) {
-  res.render('index', { title: 'Help' });
+  res.render('help', { title: 'Help' });
 });
 
 
