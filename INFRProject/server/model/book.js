@@ -4,7 +4,10 @@ let mongoose = require('mongoose')
 let bookModel = mongoose.Schema({
     Name:String,
     Amount:Number,
-    Date:String,
+    Day:String,
+    Month:String,
+    Year:String,
+    Category:String
 },
 {
     collection:"expenses"

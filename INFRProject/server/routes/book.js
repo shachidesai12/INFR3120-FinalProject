@@ -9,7 +9,7 @@ router.get('/',async(req,res,next)=>{
     try{
         const BookList = await Book.find();
         res.render('Book/list',{
-            title:'Expenses',
+            title:'Transactions',
             BookList:BookList
         })
     }
@@ -39,10 +39,14 @@ router.post('/add',async(req,res,next)=>{
         let newBook = Book({
             "Name":req.body.Name,
             "Amount":req.body.Amount,
-            "Date":req.body.Date
+            "Day":req.body.Day,
+            "Month":req.body.Month,
+            "Year":req.body.Year,
+            "Category":req.body.Category
+
         });
         Book.create(newBook).then(()=>{
-            res.redirect('/bookslist') /*Once created route back to books*/
+            res.redirect('/transactions') /*Once created route back to books*/
         })
     }
     catch(err){
@@ -78,10 +82,13 @@ router.post('/edit/:id',async(req,res,next)=>{
             "_id":id,
             "Name":req.body.Name,
             "Amount:":req.body.Amount,
-            "Date":req.body.Date
+            "Day":req.body.Day,
+            "Month":req.body.Month,
+            "Year":req.body.Year,
+            "Category":req.body.Category
         })
         Book.findByIdAndUpdate(id,updatedBook).then(()=>{
-            res.redirect('/bookslist')
+            res.redirect('/transactions')
         })
 
     }
@@ -97,7 +104,7 @@ router.get('/delete/:id',async(req,res,next)=>{
 try{
     let id=req.params.id;
     Book.deleteOne({_id:id}).then(()=>{
-        res.redirect('/bookslist')
+        res.redirect('/transactions')
     })
     
 }
