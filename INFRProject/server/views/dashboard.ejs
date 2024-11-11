@@ -1,0 +1,50 @@
+<%- include Partials/header.ejs %>
+<%- include Partials/main_nav.ejs %>
+
+<!--dashboard section-->
+
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+let foodTotal = 0; // Initialize foodTotal
+
+// Assuming booklists is an array of booklist objects
+BookList.forEach(BookList => {
+    if (BookList.Category === 'Food') {
+        foodTotal += parseInt(BookList.Amount, 10);
+    }
+});
+
+console.log(BookList.Amount)
+</script>
+
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Food', 'Travel', 'Housing', 'Personal', 'Subscriptions', 'Miscellaneous'],
+      datasets: [{
+        label: 'Expense',
+        data: [foodTotal, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+
+  <%- include Partials/footer.ejs %>

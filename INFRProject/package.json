@@ -6,15 +6,24 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-free": "^6.6.0",
+    "@mui/material": "^6.1.6",
+    "@mui/styled-engine-sc": "^6.1.6",
+    "@mui/x-charts": "^7.22.2",
+    "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.6",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "mongoose": "^8.8.0",
+    "mongoose": "^8.8.1",
     "morgan": "~1.9.1",
-    "save": "^2.9.0"
+    "save": "^2.9.0",
+    "styled-components": "^6.1.13"
   }
 }
