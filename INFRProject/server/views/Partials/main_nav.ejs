@@ -1,10 +1,11 @@
- <!--Navbar-->
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    
+   
     <img  src="/Assets/images/logo.png" alt="logo" class="company" class="logo" height="75" weight="75">
     <a class="navbar-brand" href="/">Expense Tracker</a>
-
+ 
+ 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +14,7 @@
         <li class="nav-item">
           <% if(title=="Home") { %>
               <a class="nav-link active" href="/home">
-           <% } else { %>    
+           <% } else { %>   
             <a class="nav-link" href="/home">
           <% } %>
             <i class="fa-solid fa-house-chimney"></i> Home</a>
@@ -21,17 +22,18 @@
         <li class="nav-item">
           <% if(title=="Dashboard") { %>
             <a class="nav-link active" href="/dashboard">
-          <% } else { %> 
+          <% } else { %>
             <a class="nav-link" href="/dashboard">
           <% } %>
             <i class="fa-solid fa-line-chart"></i> Dashboard</a>
         </li>
-        
-
+       
+ 
+ 
         <li class="nav-item">
           <% if(title=="Books") { %>
               <a class="nav-link active" href="/transactions">
-           <% } else { %>    
+           <% } else { %>   
             <a class="nav-link" href="/transactions">
           <% } %>
             <i class="fa-solid fa-dollar-sign"></i> Transactions</a>
@@ -39,12 +41,12 @@
         <li class="nav-item">
           <% if(title=="Help") { %>
             <a class="nav-link active" href="/help">
-          <% } else { %> 
+          <% } else { %>
             <a class="nav-link" href="/help">
-          <% } %>  
+          <% } %> 
             <i class="fa-solid fa-handshake"></i> Help</a>
         </li>
       </ul>
     </div>
   </div>
-</nav>
+ </nav>
