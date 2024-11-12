@@ -24,7 +24,7 @@ router.get('/',async(req,res,next)=>{
 router.get('/add',async(req,res,next)=>{
     try{
         res.render('Book/add',{
-            title: 'Add Book'});
+            title: 'Add Expense'});
     }
     catch(err){
         console.error(err)
@@ -60,7 +60,7 @@ router.get('/edit/:id',async(req,res,next)=>{
         const bookToEdit=await Book.findById(id);
         res.render('Book/edit',
             {
-                title: 'Edit Book',
+                title: 'Edit Expense',
                 Book:bookToEdit
             }
         )
