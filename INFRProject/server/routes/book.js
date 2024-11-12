@@ -1,21 +1,21 @@
 var express = require('express');
 var router = express.Router();
-let Expense = require('../model/expense.js')
-let expenseController = require('../controllers/expense.js')
+let Book = require('../model/book')
+let bookController = require('../controllers/book.js')
 
 
 /*Read Operation --> Get route for displaying the books list*/
 router.get('/',async(req,res,next)=>{
     try{
-        const ExpenseList = await Expense.find();
-        res.render('Expense/list',{
+        const BookList = await Book.find();
+        res.render('Book/list',{
             title:'Transactions',
-            ExpenseList:ExpenseList
+            BookList:BookList
         })
     }
     catch(err){
         console.error(err)
-        res.render('Expense/list',{
+        res.render('Book/list',{
             error:'Error on Server'})
     }
 })
@@ -23,12 +23,12 @@ router.get('/',async(req,res,next)=>{
 /*Create Operation --> Get route for displaying add page*/
 router.get('/add',async(req,res,next)=>{
     try{
-        res.render('Expense/add',{
-            title: 'Add Expense'});
+        res.render('Book/add',{
+            title: 'Add Book'});
     }
     catch(err){
         console.error(err)
-        res.render('Expense/list',{
+        res.render('Book/list',{
             error:'Error on Server'})
     }
 });
@@ -36,7 +36,7 @@ router.get('/add',async(req,res,next)=>{
 /*Create Operation --> Post route for processing the Add Page*/
 router.post('/add',async(req,res,next)=>{
     try{
-        let newExpense = Expense({
+        let newBook = Book({
             "Name":req.body.Name,
             "Amount":req.body.Amount,
             "Day":req.body.Day,
@@ -45,13 +45,13 @@ router.post('/add',async(req,res,next)=>{
             "Category":req.body.Category
 
         });
-        Expense.create(newExpense).then(()=>{
+        Book.create(newBook).then(()=>{
             res.redirect('/transactions') /*Once created route back to books*/
         })
     }
     catch(err){
         console.error(err)
-        res.render('Expense/list',{
+        res.render('Book/list',{
             error:'Error on Server'})
     }
 });
@@ -59,18 +59,18 @@ router.post('/add',async(req,res,next)=>{
 router.get('/edit/:id',async(req,res,next)=>{
     try{
         const id = req.params.id;
-        const expenseToEdit=await Expense.findById(id);
-        res.render('Expense/edit',
+        const bookToEdit=await Book.findById(id);
+        res.render('Book/edit',
             {
-                title: 'Edit Expense',
-                Expense:expenseToEdit
+                title: 'Edit Book',
+                Book:bookToEdit
             }
         )
     }
     catch(err){
         console.error(err)
         next(err); //Keep passing the error
-        res.render('Expense/list',{
+        res.render('Book/list',{
             error:'Error on Server'})
     }
 });
@@ -78,7 +78,7 @@ router.get('/edit/:id',async(req,res,next)=>{
 router.post('/edit/:id',async(req,res,next)=>{
     try{
         let id=req.params.id;
-        let updatedExpense = Expense({
+        let updatedBook = Book({
             "_id":id,
             "Name":req.body.Name,
             "Amount:":req.body.Amount,
@@ -87,14 +87,14 @@ router.post('/edit/:id',async(req,res,next)=>{
             "Year":req.body.Year,
             "Category":req.body.Category
         })
-        Expense.findByIdAndUpdate(id,updatedExpense).then(()=>{
+        Book.findByIdAndUpdate(id,updatedBook).then(()=>{
             res.redirect('/transactions')
         })
 
     }
     catch(err){
         console.error(err)
-        res.render('Expense/list',{
+        res.render('Book/list',{
             error:'Error on Server'})
     }
 
@@ -103,14 +103,14 @@ router.post('/edit/:id',async(req,res,next)=>{
 router.get('/delete/:id',async(req,res,next)=>{
 try{
     let id=req.params.id;
-    Expense.deleteOne({_id:id}).then(()=>{
+    Book.deleteOne({_id:id}).then(()=>{
         res.redirect('/transactions')
     })
     
 }
 catch(err){
     console.error(err)
-    res.render('Expense/list',{
+    res.render('Book/list',{
         error:'Error on Server'})
 }
 });

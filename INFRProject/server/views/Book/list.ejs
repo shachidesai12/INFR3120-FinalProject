@@ -18,22 +18,22 @@
                 <th class="text-center col-1">Year</th>
                 <th class="text-center col-2">Category</th>
             </tr>
-            <% for(let count=0;count<ExpenseList.length;count++) { %>
+            <% for(let count=0;count<BookList.length;count++) { %>
             <tr class="d-flex">
-                <td class="text-center col-2"><%= ExpenseList[count].Name %></td>
-                <td class="text-center col-2"><%= ExpenseList[count].Amount %></td>
-                <td class="text-center col-1"><%= ExpenseList[count].Day %></td>
-                <td class="text-center col-1"><%= ExpenseList[count].Month %></td>
-                <td class="text-center col-1"><%= ExpenseList[count].Year %></td>
-                <td class="text-center col-2"><%= ExpenseList[count].Category %></td>
+                <td class="text-center col-2"><%= BookList[count].Name %></td>
+                <td class="text-center col-2"><%= BookList[count].Amount %></td>
+                <td class="text-center col-1"><%= BookList[count].Day %></td>
+                <td class="text-center col-1"><%= BookList[count].Month %></td>
+                <td class="text-center col-1"><%= BookList[count].Year %></td>
+                <td class="text-center col-2"><%= BookList[count].Category %></td>
                 <td class="text-center col-1">
-                    <a href="/transactions/edit/<%= ExpenseList[count]._id%>" 
+                    <a href="/transactions/edit/<%= BookList[count]._id%>" 
                         class="btn btn-primary btn-sm">
                         <i class="fas fa-pencil-alt"></i>Edit
                     </a>
                 </td>
                 <td class="text-center col-1">
-                    <a href="/transactions/delete/<%= ExpenseList[count]._id%>" 
+                    <a href="/transactions/delete/<%= BookList[count]._id%>" 
                         class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i>Delete
                     </a>
