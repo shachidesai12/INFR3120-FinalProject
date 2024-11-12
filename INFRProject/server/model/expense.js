@@ -13,8 +13,4 @@ let expenseModel = mongoose.Schema({
     collection:"expenses"
 }
 )
-<<<<<<< Updated upstream:INFRProject/server/model/book.js
-module.exports = mongoose.model('Book',bookModel)
-=======
 module.exports = mongoose.model('Expense',expenseModel)
->>>>>>> Stashed changes:INFRProject/server/model/expense.js
