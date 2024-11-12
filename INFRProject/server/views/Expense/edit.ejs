@@ -7,34 +7,34 @@
             <h1><%= title%></h1>
             <form class="form" method="POST">
                 <div class="form-group">
-                    <label for="nameTextField">Book Title</label>
+                    <label for="nameTextField">Expense Name</label>
                     <input type="text" class="form-control" id="nameTextField"
-                    placeholder="Enter Expense Name" name="Name" value="<%= Book.Name %>" required>
+                    placeholder="Enter Expense Name" name="Name" value="<%= Expense.Name %>" required>
                 </div>
                 <div class="form-group">
                     <label for="amountTextField">Expense Amount</label>
                     <input type="text" class="form-control" id="amountTextField"
-                    placeholder="Enter the Amount" name="Amount" value="<%= Book.Amount %>" required>
+                    placeholder="Enter the Amount" name="Amount" value="<%= Expense.Amount %>" required>
                 </div>
                 <div class="form-group">
                     <label for="dayTextField">Day</label>
                     <input type="text" class="form-control" id="dayTextField"
-                    placeholder="Enter the Day" name="Day" value="<%= Book.Day %>" required>
+                    placeholder="Enter the Day" name="Day" value="<%= Expense.Day %>" required>
                 </div>
                 <div class="form-group">
                     <label for="monthTextField">Month</label>
                     <input type="text" class="form-control" id="monthTextField"
-                    placeholder="Enter the Month" name="Month" value="<%= Book.Month %>" required>
+                    placeholder="Enter the Month" name="Month" value="<%= Expense.Month %>" required>
                 </div>
                 <div class="form-group">
                     <label for="yearTextField">Year</label>
                     <input type="text" class="form-control" id="yearTextField"
-                    placeholder="Enter the Year" name="Year" value="<%= Book.Year %>" required>
+                    placeholder="Enter the Year" name="Year" value="<%= Expense.Year %>" required>
                 </div>
                 <div class="form-group">
                     <label for="categoryTextField">Date</label>
                     <input type="text" class="form-control" id="categoryTextField"
-                    placeholder="Enter the Category" name="Category" value="<%= Book.Category %>" required>
+                    placeholder="Enter the Category" name="Category" value="<%= Expense.Category %>" required>
                 </div>
                 <button class="btn btn-primary" type="submit">Submit</button>
                 <i class = "fas fa-edit"></i>
