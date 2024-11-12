@@ -12,14 +12,14 @@
 <script>
 let foodTotal = 0; // Initialize foodTotal
 
-// Assuming booklists is an array of booklist objects
-BookList.forEach(BookList => {
-    if (BookList.Category === 'Food') {
-        foodTotal += parseInt(BookList.Amount, 10);
+// Assuming ExpenseList is an array of ExpenseList objects
+ExpenseList.forEach(ExpenseList => {
+    if (ExpenseList.Category === 'Food') {
+        foodTotal += parseInt(ExpenseList.Amount, 10);
     }
 });
 
-console.log(BookList.Amount)
+console.log(ExpenseList.Amount)
 </script>
 
 
