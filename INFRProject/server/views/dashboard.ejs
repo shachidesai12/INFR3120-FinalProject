@@ -1,27 +1,62 @@
 <%- include Partials/header.ejs %>
 <%- include Partials/main_nav.ejs %>
 
-<!--dashboard section-->
+<!--Calculate food total-->
+<% var foodTotal = 0 %>
+<% for(let count=0;count<Datalist.length;count++) { %>
+  <% if(Datalist[count].Category =="Food") { %>
+  <% foodTotal += Datalist[count].Amount  %>
+<% } %>
+<% } %>  
+<%= foodTotal %>
 
-<div>
-  <canvas id="myChart"></canvas>
-</div>
+<!--Calculate travel total-->
+<% var travelTotal = 0 %>
+<% for(let count=0;count<Datalist.length;count++) { %>
+  <% if(Datalist[count].Category =="Travel") { %>
+  <% travelTotal += Datalist[count].Amount  %>
+<% } %>
+<% } %>  
+<%= travelTotal %>
 
+<!--Calculate housing total-->
+<% var housingTotal = 0 %>
+<% for(let count=0;count<Datalist.length;count++) { %>
+  <% if(Datalist[count].Category =="Housing") { %>
+  <% housingTotal += Datalist[count].Amount  %>
+<% } %>
+<% } %>  
+<%= housingTotal %>
+
+<!--Calculate personal total-->
+<% var personalTotal = 0 %>
+<% for(let count=0;count<Datalist.length;count++) { %>
+  <% if(Datalist[count].Category =="Personal") { %>
+  <% personalTotal += Datalist[count].Amount  %>
+<% } %>
+<% } %>  
+<%= personalTotal %>
+
+<!--Calculate subscriptions total-->
+<% var subTotal = 0 %>
+<% for(let count=0;count<Datalist.length;count++) { %>
+  <% if(Datalist[count].Category =="Subscriptions") { %>
+  <% subTotal += Datalist[count].Amount  %>
+<% } %>
+<% } %>  
+<%= subTotal %>
+
+<!--Calculate subscriptions total-->
+<% var misTotal = 0 %>
+<% for(let count=0;count<Datalist.length;count++) { %>
+  <% if(Datalist[count].Category =="Miscellaneous") { %>
+  <% misTotal += Datalist[count].Amount  %>
+<% } %>
+<% } %>  
+<%= misTotal %>
+
+<canvas id="myChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-let foodTotal = 0; // Initialize foodTotal
-
-// Assuming ExpenseList is an array of ExpenseList objects
-ExpenseList.forEach(ExpenseList => {
-    if (ExpenseList.Category === 'Food') {
-        foodTotal += parseInt(ExpenseList.Amount, 10);
-    }
-});
-
-console.log(ExpenseList.Amount)
-</script>
-
 
 <script>
   const ctx = document.getElementById('myChart');
@@ -32,7 +67,7 @@ console.log(ExpenseList.Amount)
       labels: ['Food', 'Travel', 'Housing', 'Personal', 'Subscriptions', 'Miscellaneous'],
       datasets: [{
         label: 'Expense',
-        data: [foodTotal, 19, 3, 5, 2, 3],
+        data: [<%= foodTotal %>, <%=travelTotal%>, <%=housingTotal%>, <%= personalTotal%>, <%=subTotal%>, <%=misTotal %>],
         borderWidth: 1
       }]
     },
@@ -45,6 +80,7 @@ console.log(ExpenseList.Amount)
     }
   });
 </script>
+
 
 
   <%- include Partials/footer.ejs %>
