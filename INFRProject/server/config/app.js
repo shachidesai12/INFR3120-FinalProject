@@ -6,7 +6,7 @@ let logger = require('morgan');
 
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
-let expenseRouter = require('../routes/expense')
+let expenseRouter = require('../routes/expense');
 
 let app = express();
 let mongoose = require('mongoose');
