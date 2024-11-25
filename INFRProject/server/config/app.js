@@ -3,6 +3,12 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let session = require('express-session');
+let passport = require('passport');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
+let flash = require('connect-flash');
+
 
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
@@ -21,6 +27,32 @@ mongoDB.once('open',()=>{
 mongoose.connect(DB.URI,{useNewURIParser:true,
   useUnifiedTopology:true
 })
+
+//set-up express session
+app.use(session({
+  secret:"SomeSecret",
+  saveUninitialized:false,
+  resave:false
+}))
+
+//initialize the flash
+app.use(flash());
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//creat a user model instance
+let userModel = require('../model/user');
+let user=userModel.User;
+
+// sereialze and deserialize the user information
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
@@ -31,6 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/transactions',expenseRouter);
