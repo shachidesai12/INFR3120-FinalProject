@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
+const { transformAuthInfo } = require('passport');
 let passportLocalMongoose = require('passport-local-mongoose');
-
+const { collection } = require('./expense');
 let User=mongoose.Schema({
     username:
     {
@@ -22,6 +23,13 @@ let User=mongoose.Schema({
         default:"",
         trim:true,
         required: 'DisplayName is required'
+    },
+    email:
+    {
+        type:String,
+        default:"",
+        trim:true,
+        required: 'Email is required'
     },
     created:{
         type:Date,

@@ -2,14 +2,29 @@ var express = require('express');
 var router = express.Router();
 let Expense = require('../model/expense.js')
 let expenseController = require('../controllers/expense.js')
+//let mongoose = require('mongoose');
 
+//Connect with expense model 
+//let Expense = require('../model/expense');
+//let expenseController = require('../controllers/expense');
+
+/*CRUD Operations */
+
+function requireAuth(req,res,next)
+{
+    if(!req.isAuthenticated())
+    {
+        return res.redirect('/login');
+    }
+    next();
+}
 
 /*Read Operation --> Get route for displaying the expense list*/
 router.get('/',async(req,res,next)=>{
     try{
         const ExpenseList = await Expense.find();
         res.render('Expense/list',{
-            title:'Transactions',
+            title:'Transactions', displayName:req.user?req.user.displayName:'',
             ExpenseList:ExpenseList
         })
     }
@@ -62,7 +77,7 @@ router.get('/edit/:id',async(req,res,next)=>{
         const expenseToEdit=await Expense.findById(id);
         res.render('Expense/edit',
             {
-                title: 'Edit Expenses',
+                title: 'Edit Expenses', displayName:req.user?req.user.displayName:'',
                 Expense:expenseToEdit
             }
         )
@@ -114,6 +129,8 @@ catch(err){
         error:'Error on Server'})
 }
 });
+
+
 
 
 module.exports = router;

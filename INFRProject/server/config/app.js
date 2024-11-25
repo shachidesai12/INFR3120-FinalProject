@@ -3,18 +3,27 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let session = require('express-session');
-let passport = require('passport');
-let passportLocal = require('passport-local');
-let localStrategy = passportLocal.Strategy;
-let flash = require('connect-flash');
 
+let app = express();
+let cors = require('cors')
+//creat a user model instance
+let userModel = require('../model/user');
+let user=userModel.User;
 
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let expenseRouter = require('../routes/expense');
 
-let app = express();
+//Libraries required before performing authentication 
+let session = require('express-session');
+let passport = require('passport');
+let passportLocal = require('passport-local');
+
+let flash = require('connect-flash');
+passport.use(user.createStrategy());
+let localStrategy = passportLocal.Strategy;
+
+
 let mongoose = require('mongoose');
 let DB = require('./db');
 // point my mongoose to the URI
@@ -37,21 +46,12 @@ app.use(session({
 
 //initialize the flash
 app.use(flash());
-
-//initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-//creat a user model instance
-let userModel = require('../model/user');
-let user=userModel.User;
-
 // sereialze and deserialize the user information
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
-
-
-
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
