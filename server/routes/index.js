@@ -65,10 +65,10 @@ router.get('/auth/google/callback',
 
 // Logout route
 router.get('/logout', (req, res, next) => {
-  req.logout(err => {
-      if (err) return next(err);
-      res.redirect('/');
-  });
+    req.logout(err => {
+        if (err) return next(err);
+        res.redirect('/');
+    });
 });
 
 // Get router for login page

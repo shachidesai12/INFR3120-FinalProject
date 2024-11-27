@@ -39,7 +39,8 @@ let localStrategy = passportLocal.Strategy;
 //google authentication
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-
+console.log('Client ID:', process.env.clientID);
+console.log('Client Secret:', process.env.clientSecret);
 passport.use(new GoogleStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
@@ -53,7 +54,8 @@ passport.use(new GoogleStrategy({
   }
 }));
 
-
+console.log('Client ID:', process.env.clientID);
+  console.log('Client Secret:', process.env.clientSecret);
 
 let mongoose = require('mongoose');
 let DB = require('./db');
