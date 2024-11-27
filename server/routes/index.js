@@ -51,6 +51,26 @@ router.get('/help', function(req, res, next) {
   res.render('help', { title: 'Help', displayName: req.user ? req.user.displayName:'' });
 });
 
+// Google OAuth login route
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// Google OAuth callback route
+router.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+        // Successful authentication, redirect to dashboard
+        res.redirect('/dashboard');
+    }
+);
+
+// Logout route
+router.get('/logout', (req, res, next) => {
+  req.logout(err => {
+      if (err) return next(err);
+      res.redirect('/');
+  });
+});
+
 // Get router for login page
 /* GET login page. */
 router.get('/login', function(req, res, next) {

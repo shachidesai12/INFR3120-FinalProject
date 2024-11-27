@@ -31,6 +31,12 @@ let user=mongoose.Schema({
         trim:true,
         required: 'Email is required'
     },
+    
+    googleId: {
+        type: String, // Store Google account ID
+        default: null
+    },
+
     created:{
         type:Date,
         default:Date.now

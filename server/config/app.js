@@ -23,6 +23,36 @@ let flash = require('connect-flash');
 passport.use(user.createStrategy());
 let localStrategy = passportLocal.Strategy;
 
+//google authentication
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+passport.use(new GoogleStrategy({
+  clientID: '.env.CI',
+  clientSecret: '.env.CS',
+  callbackURL: "https://infr3120-finalproject-1.onrender.com/auth20/redirect/google"
+}, async (accessToken, refreshToken, profile, done) => {
+  try {
+      // Check if the user exists based on Google ID
+      let user = await User.findOne({ googleId: profile.id });
+
+      if (user) {
+          return done(null, user); // User already exists
+      }
+
+      // Create a new user if it doesn't exist
+      user = new User({
+          googleId: profile.id,
+          username: profile.emails[0].value,
+          displayName: profile.displayName,
+          email: profile.emails[0].value
+      });
+
+      await user.save();
+      done(null, user);
+  } catch (err) {
+      done(err, null);
+  }
+}));
 
 let mongoose = require('mongoose');
 let DB = require('./db');
