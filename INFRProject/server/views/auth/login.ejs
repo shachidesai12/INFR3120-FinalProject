@@ -4,9 +4,9 @@
 <main class="container">
     <!--Message Area-->
     <% if (message.lenth > 0) { %>
-    <div class="alert alter-danger">
-        <%= message %>
-    </div>
+        <div class="alert alter-danger">
+            <%= message %>
+        </div>
     <% } %>
 
      <div class="row">
@@ -29,11 +29,11 @@
                     or
                     <a href="/register">Register Here</a>
                 </fieldset>
-                <fieldset class="form-group text-right">
+                <fieldset class="form-group">
                     <input type="submit" class="btn btn-success"
                     value="Login">
                     <a href="/"></a>
-                        <input type="button" class="btn btn-warning" value="Cancel">
+                    <input type="button" class="btn btn-warning" value="Cancel">
                     </a>
                 </fieldset>
             </form>

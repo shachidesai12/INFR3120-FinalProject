@@ -3,7 +3,7 @@ var router = express.Router();
 const passport = require('passport');
 const DB = require('../config/db');
 let userModel = require('../model/user');
-let User = userModel.User;
+let user = userModel.user;
 let Expense = require('../model/expense.js')
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -87,7 +87,7 @@ router.post('/login', function(req,res,next){
       {
         return next (err)
       }
-      return res.redirect('/bookslist')
+      return res.redirect('/transactions')
     })
   })(req,res,next)
 })
@@ -108,13 +108,13 @@ router.get('/register',function(req,res,next){
 })
 //post router for registration page
 router.post('/register',function(req,res,next){
-  let newUser =  new User({
+  let newUser =  new user({
     username: req.body.username,
     //password: req.body.password,
     email: req.body.email,
     displayName: req.body.displayName
   })
-  User.register(newUser,req.body.password,(err) => {
+  user.register(newUser,req.body.password,(err) => {
     console.log(newUser)
     if(err)
     {
@@ -132,7 +132,7 @@ router.post('/register',function(req,res,next){
     else 
     {
       return passport.authenticate('local')(req,res,() =>{
-        res.redirect('/bookslist')
+        res.redirect('/transactions')
       })
     }
   })
