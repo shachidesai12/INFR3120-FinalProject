@@ -5,6 +5,7 @@ const DB = require('../config/db');
 let userModel = require('../model/user');
 let user = userModel.user;
 let Expense = require('../model/expense.js')
+
 /* GET index page. */
 router.get('/', function(req, res, next) {
   res.render('home', { title: 'Home', displayName: req.user ? req.user.displayName:''});
@@ -28,23 +29,6 @@ router.get('/dashboard',async(req,res,next)=>{
           error:'Error on Server'})
   }
 })
-
-// router.get('/dashboard', async (req, res, next) => {
-//   try {
-//       const Datalist = await Expense.find(); // Fetch expenses from the database
-//       res.render('Expense/list', {
-//           title: 'Expense List',
-//           ExpenseList: expenses // Pass the data to the template
-//       });
-//   } catch (err) {
-//       console.error(err);
-//       res.render('Expense/list', {
-//           title: 'Error',
-//           error: 'Error fetching expenses',
-//           ExpenseList: [] // Pass an empty list as a fallback
-//       });
-//   }
-// });
 
 /* GET Help page. */
 router.get('/help', function(req, res, next) {

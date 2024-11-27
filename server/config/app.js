@@ -44,7 +44,7 @@ console.log('Client Secret:', process.env.clientSecret);
 passport.use(new GoogleStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-  callbackURL: "https://infr3120-finalproject-1.onrender.com/auth20/redirect/google"
+  callbackURL: "https://infr3120-finalproject-1.onrender.com/transactions"
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     // Your logic to find or create the user
