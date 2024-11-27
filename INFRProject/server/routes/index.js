@@ -13,9 +13,6 @@ router.get('/', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Home', displayName: req.user ? req.user.displayName:'' });
 });
-/*router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', { title: 'Dashboard' });
-});*/
 
 router.get('/dashboard',async(req,res,next)=>{
   try{
@@ -118,6 +115,7 @@ router.post('/register',function(req,res,next){
     displayName: req.body.displayName
   })
   User.register(newUser,req.body.password,(err) => {
+    console.log(newUser)
     if(err)
     {
       console.log("Error: Inserting new user");
