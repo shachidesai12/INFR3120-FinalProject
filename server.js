@@ -7,12 +7,12 @@
 var app = require('./server/config/app');
 var debug = require('debug')('infrproject:server');
 var http = require('http');
-
+require('dotenv').config()
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '2500');
 app.set('port', port);
 
 /**
@@ -88,3 +88,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+

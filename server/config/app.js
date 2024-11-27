@@ -1,3 +1,15 @@
+require('dotenv').config();
+
+console.log('Client ID:', process.env.clientID);
+console.log('Client Secret:', process.env.clientSecret);
+
+// import dotenv from 'dotenv';
+// dotenv.config();
+
+// const config ={
+
+// }
+
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -19,6 +31,7 @@ let session = require('express-session');
 let passport = require('passport');
 let passportLocal = require('passport-local');
 
+
 let flash = require('connect-flash');
 passport.use(user.createStrategy());
 let localStrategy = passportLocal.Strategy;
@@ -26,33 +39,21 @@ let localStrategy = passportLocal.Strategy;
 //google authentication
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+
 passport.use(new GoogleStrategy({
-  clientID: '.env.CI',
-  clientSecret: '.env.CS',
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
   callbackURL: "https://infr3120-finalproject-1.onrender.com/auth20/redirect/google"
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-      // Check if the user exists based on Google ID
-      let user = await User.findOne({ googleId: profile.id });
-
-      if (user) {
-          return done(null, user); // User already exists
-      }
-
-      // Create a new user if it doesn't exist
-      user = new User({
-          googleId: profile.id,
-          username: profile.emails[0].value,
-          displayName: profile.displayName,
-          email: profile.emails[0].value
-      });
-
-      await user.save();
-      done(null, user);
+    // Your logic to find or create the user
+    done(null, profile);
   } catch (err) {
-      done(err, null);
+    done(err);
   }
 }));
+
+
 
 let mongoose = require('mongoose');
 let DB = require('./db');
