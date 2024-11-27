@@ -1,13 +1,13 @@
 <%- include ../Partials/header.ejs %>
 <%- include ../Partials/main_nav.ejs %>
-<% if((typeof displayName=='string' && displayName) || (typeof googleid=='string' && googleid )){%>   
+<% if((typeof displayName=='string' && displayName) || (googleid )){%>   
     <main class="container">
         <div class="row">
             <div class="col py-3">
                 <h1><%= title %></h1>
                 <br>
                 <!--Only show add button if user not logged in-->
-                <% if((typeof displayName=='string' && displayName) || (typeof googleid=='string' && googleid )){%>
+                <% if((typeof displayName=='string' && displayName) || (googleid )){%>
                     <a href="/transactins/add" class="btn tn-primary" role="button">
                         <i class="fas fa-plus-circle"></i> Add Expense
                     </a>
