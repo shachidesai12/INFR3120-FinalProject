@@ -25,6 +25,7 @@ router.get('/',async(req,res,next)=>{
         const ExpenseList = await Expense.find();
         res.render('Expense/list',{
             title:'Transactions', displayName:req.user?req.user.displayName:'',
+            googleid: req.user?req.user.googleId:'',
             ExpenseList:ExpenseList
         })
     }
