@@ -97,16 +97,16 @@ app.use(session({
 //initialize the flash
 app.use(flash());
 // sereialze and deserialize the user information
-//passport.serializeUser(user.serializeUser());
-//passport.deserializeUser(user.deserializeUser());
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
-passport.serializeUser((user, done) =>{
-  done(null,user.id);
-});
+// passport.serializeUser((user, done) =>{
+//   done(null,user.id);
+// });
 
-passport.deserializeUser(async(id,done) =>{
-  const user = await user.findById(id);
-});
+// passport.deserializeUser(async(id,done) =>{
+//   const user = await user.findById(id);
+// });
 
 //initialize passport
 app.use(passport.initialize());

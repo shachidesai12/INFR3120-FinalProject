@@ -46,7 +46,7 @@ router.get('/auth/google/callback',
     (req, res) => {
       console.log('Authenticated user:',req.user);
         // Successful authentication, redirect to dashboard
-        res.redirect('/dashboard');
+        res.redirect('/home');
     }
 );
 
