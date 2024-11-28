@@ -60,7 +60,7 @@ router.get('/logout', (req, res, next) => {
 router.get('/login', function(req, res, next) {
   if(!req.user)
   {
-    res.render('Auth/login',
+    res.render('auth/login',
       {
         title:'Login',
         message:req.flash('loginMessage'),
@@ -100,7 +100,7 @@ router.post('/login', function(req,res,next){
 router.get('/register',function(req,res,next){
   if(!req.user)
   {
-    res.render('Auth/register',{
+    res.render('auth/register',{
       title:'Register',
       message:req.flash('registerMessage'),
       displayName: req.user?req.user.displayName:''    //if user exists show displayName else nothing, since we only have two statemnets can use ? instead of if else
