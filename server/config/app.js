@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log('Client ID:', process.env.clientID);
-console.log('Client Secret:', process.env.clientSecret);
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -49,10 +47,10 @@ async (accessToken, refreshToken, profile, done) => {
   console.log('Google Profile:',profile)
   try {
     // Check if the user exists based on Google ID
-    let user = await user.findOne({ 'googleId': profile.id });
+    let currentUser = await user.findOne({ 'googleId': profile.id });
 
-    if (!user) {
-      const newUser = new User({
+    if (!currentUser) {
+      const newUser = new user({
         'googleId': profile.id,
         'username': profile.emails[0].value,
         'displayName': profile.displayName,
@@ -61,7 +59,7 @@ async (accessToken, refreshToken, profile, done) => {
     await newUser.save();
     return done(null, newUser); // User already exists
     }
-    return done(null, newUser);
+    return done(null, currentUser);
     // Create a new user if it doesn't exist
     
     console.log('googleID')
