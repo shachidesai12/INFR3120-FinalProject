@@ -49,19 +49,19 @@ async (accessToken, refreshToken, profile, done) => {
   console.log('Google Profile:',profile)
   try {
     // Check if the user exists based on Google ID
-    let user = await user.findOne({ googleId: profile.id });
+    let user = await user.findOne({ 'googleId': profile.id });
 
     if (!user) {
-      const user = newUser({
-        googleId: profile.id,
-        username: profile.emails[0].value,
-        displayName: profile.displayName,
-        email: profile.emails[0].value
+      const newUser = new User({
+        'googleId': profile.id,
+        'username': profile.emails[0].value,
+        'displayName': profile.displayName,
+        'email': profile.emails[0].value
     });
-    await user.save();
+    await newUser.save();
     return done(null, newUser); // User already exists
     }
-    return done(null, user);
+    return done(null, newUser);
     // Create a new user if it doesn't exist
     
     console.log('googleID')
