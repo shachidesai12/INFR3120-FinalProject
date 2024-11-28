@@ -32,6 +32,7 @@ let passport = require('passport');
 let passportLocal = require('passport-local');
 
 
+
 let flash = require('connect-flash');
 passport.use(user.createStrategy());
 let localStrategy = passportLocal.Strategy;
@@ -42,31 +43,35 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-  callbackURL: "https://infr3120-finalproject-1.onrender.com/transactions"
-}, async (accessToken, refreshToken, profile, done) => {
+  callbackURL: "https://infr3120-finalproject-1.onrender.com/auth20/redirect/google"
+}, 
+async (accessToken, refreshToken, profile, done) => {
+  console.log('Google Profile:',profile)
   try {
     // Check if the user exists based on Google ID
     let user = await user.findOne({ googleId: profile.id });
 
-    if (user) {
-        return done(null, user); // User already exists
-    }
-
-    // Create a new user if it doesn't exist
-    user = new user({
+    if (!user) {
+      const user = newUser({
         googleId: profile.id,
         username: profile.emails[0].value,
         displayName: profile.displayName,
         email: profile.emails[0].value
     });
-
     await user.save();
-    done(null, user);
+    return done(null, newUser); // User already exists
+    }
+    return done(null, user);
+    // Create a new user if it doesn't exist
+    
+    console.log('googleID')
+
+    
+    
 } catch (err) {
     done(err, null);
 }
 }));
-
 
 let mongoose = require('mongoose');
 let DB = require('./db');
@@ -92,8 +97,17 @@ app.use(session({
 //initialize the flash
 app.use(flash());
 // sereialze and deserialize the user information
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
+//passport.serializeUser(user.serializeUser());
+//passport.deserializeUser(user.deserializeUser());
+
+passport.serializeUser((user, done) =>{
+  done(null,user.id);
+});
+
+passport.deserializeUser(async(id,done) =>{
+  const user = await user.findById(id);
+});
+
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
