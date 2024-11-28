@@ -45,11 +45,26 @@ passport.use(new GoogleStrategy({
   callbackURL: "https://infr3120-finalproject-1.onrender.com/transactions"
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    // Your logic to find or create the user
-    done(null, profile);
-  } catch (err) {
-    done(err);
-  }
+    // Check if the user exists based on Google ID
+    let user = await User.findOne({ googleId: profile.id });
+
+    if (user) {
+        return done(null, user); // User already exists
+    }
+
+    // Create a new user if it doesn't exist
+    user = new User({
+        googleId: profile.id,
+        username: profile.emails[0].value,
+        displayName: profile.displayName,
+        email: profile.emails[0].value
+    });
+
+    await user.save();
+    done(null, user);
+} catch (err) {
+    done(err, null);
+}
 }));
 
 

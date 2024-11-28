@@ -19,6 +19,8 @@ function requireAuth(req,res,next)
     next();
 }
 
+
+
 /*Read Operation --> Get route for displaying the expense list*/
 router.get('/',async(req,res,next)=>{
     try{
