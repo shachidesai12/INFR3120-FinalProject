@@ -62,7 +62,7 @@ async (accessToken, refreshToken, profile, done) => {
     return done(null, currentUser);
     // Create a new user if it doesn't exist
     
-    console.log('googleID')
+    console.log('googleId')
 
     
     
