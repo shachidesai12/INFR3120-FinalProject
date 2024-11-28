@@ -29,7 +29,19 @@ let session = require('express-session');
 let passport = require('passport');
 let passportLocal = require('passport-local');
 
+let mongoose = require('mongoose');
+let DB = require('./db');
+// point my mongoose to the URI
+mongoose.connect(DB.URI);
 
+let mongoDB = mongoose.connection;
+mongoDB.on('error',console.error.bind(console,'Connection Error'))
+mongoDB.once('open',()=>{
+  console.log('MongoDB Connected')
+})
+mongoose.connect(DB.URI,{useNewURIParser:true,
+  useUnifiedTopology:true
+})
 
 let flash = require('connect-flash');
 passport.use(user.createStrategy());
@@ -106,19 +118,7 @@ function(request, accessToken, refreshToken, profile, done) {
         });
 }));
 
-let mongoose = require('mongoose');
-let DB = require('./db');
-// point my mongoose to the URI
-mongoose.connect(DB.URI);
 
-let mongoDB = mongoose.connection;
-mongoDB.on('error',console.error.bind(console,'Connection Error'))
-mongoDB.once('open',()=>{
-  console.log('MongoDB Connected')
-})
-mongoose.connect(DB.URI,{useNewURIParser:true,
-  useUnifiedTopology:true
-})
 
 //set-up express session
 app.use(session({
