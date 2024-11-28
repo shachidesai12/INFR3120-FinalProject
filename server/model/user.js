@@ -34,6 +34,8 @@ let user=mongoose.Schema({
     
     googleId: {
         type: String, // Store Google account ID
+        default:"",
+        trim:true,
         default: null
     },
 
