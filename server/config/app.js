@@ -43,7 +43,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-  callbackURL: "https://infr3120-finalproject-1.onrender.com/auth20/redirect/google"
+  callbackURL: "https://infr3120-finalproject-1.onrender.com/oauth20/redirect/google"
 }, 
 async (accessToken, refreshToken, profile, done) => {
   console.log('Google Profile:',profile)
