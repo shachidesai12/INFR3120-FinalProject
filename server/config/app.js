@@ -43,32 +43,67 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.clientSecret,
   callbackURL: "https://infr3120-finalproject-1.onrender.com/google/callback"
 }, 
-async (accessToken, refreshToken, profile, done) => {
-  console.log('Google Profile:',profile)
-  try {
-    // Check if the user exists based on Google ID
-    let currentUser = await user.findOne({ 'googleId': profile.id });
+// async (accessToken, refreshToken, profile, done) => {
+//   console.log('Google Profile:',profile)
+//   try {
+//     // Check if the user exists based on Google ID
+//     let currentUser = await user.findOne({ 'googleId': profile.id });
 
-    if (!currentUser) {
-      const newUser = new user({
-        'googleId': profile.id,
-        'username': profile.emails[0].value,
-        'displayName': profile.displayName,
-        'email': profile.emails[0].value
-    });
-    await newUser.save();
-    return done(null, newUser); // User already exists
-    }
-    return done(null, currentUser);
-    // Create a new user if it doesn't exist
+//     if (!currentUser) {
+//       const newUser = new user({
+//         'googleId': profile.id,
+//         'username': profile.emails[0].value,
+//         'displayName': profile.displayName,
+//         'email': profile.emails[0].value
+//     });
+//       await newUser.save();
+//       return done(null, newUser); // Create a new user if it doesn't exist
+//     }
+//     return done(null, currentUser); // User already exists
     
-    console.log('googleId')
+//     console.log('googleId')
+    
+// } catch (err) {
+//     done(err, null);
+// }
+// }));
 
-    
-    
-} catch (err) {
-    done(err, null);
-}
+//Function to compare the Google id with our database 
+function(request, accessToken, refreshToken, profile, done) {
+  console.log(profile)
+  process.nextTick(function() { //keep event in queue
+    // find the user in the database based on their facebook id
+    user.findOne({ 'googleId' :profile.id }, function(err, user) {
+    //if there is an error, stop everything and return that
+    // ie an error connecting to the database
+    if (err)
+        return done(err);
+    // if the user is found, then log them in
+    if (user) {
+        console.log("user found")
+        console.log(user)
+    return done (null, user); // user found, return that user
+    } 
+ 
+    else 
+    { 
+    // if there is no user found with that Google id, create them
+    var newUser = new user();
+ 
+      //set all of the Google information in our user model
+      newUser.googleId = profile.id; // set the users Google id
+      newUser.displayName = profile.displayName
+      newUser.email = profile.email
+ 
+    //Save the new user's information
+    newUser.save(function (err){
+        if (err)
+            throw err;
+            return done(null, newUser);
+                });
+              }
+          });
+        });
 }));
 
 let mongoose = require('mongoose');
