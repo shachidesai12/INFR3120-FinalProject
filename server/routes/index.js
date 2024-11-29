@@ -94,7 +94,7 @@ router.post('/login', function(req,res,next){
       {
         return next (err)
       }
-      return res.redirect('/transactions')
+      return res.redirect('/transactions')  //if user successfully logs in redirect to transaction
     })
   })(req,res,next)
 })

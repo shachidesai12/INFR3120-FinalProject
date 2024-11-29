@@ -1,13 +1,5 @@
 require('dotenv').config();
 
-
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// const config ={
-
-// }
-
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -105,7 +97,7 @@ function(request, accessToken, refreshToken, profile, done) {
       //set all of the Google information in our user model
       newUser.googleId = profile.id; // set the users Google id
       newUser.displayName = profile.displayName
-      newUser.email = profile.email
+      newUser.email = profile.emails[0].value
  
     //Save the new user's information
     newUser.save(function (err){
@@ -130,16 +122,16 @@ app.use(session({
 //initialize the flash
 app.use(flash());
 // sereialze and deserialize the user information
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
+// passport.serializeUser(user.serializeUser());
+// passport.deserializeUser(user.deserializeUser());
 
-// passport.serializeUser((user, done) =>{
-//   done(null,user.id);
-// });
+passport.serializeUser((user, done) =>{
+  done(null,user.id);
+});
 
-// passport.deserializeUser(async(id,done) =>{
-//   const user = await user.findById(id);
-// });
+passport.deserializeUser(async(id,done) =>{
+  const user = await user.findById(id);
+});
 
 //initialize passport
 app.use(passport.initialize());
