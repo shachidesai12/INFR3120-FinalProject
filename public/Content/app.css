@@ -1,0 +1,120 @@
+*{
+    font-family: 'Trebuchet MS';
+}
+
+.navbar-brand {
+    font-size: 200 px;
+    font-family: "Trebuchet MS";
+    font-size: 15px;
+    background-color: transparent;
+    color: #ffc97f; 
+}
+
+/*****************************************************************************************************************/
+/*Home Page*/
+#leftSide{
+    float: left;
+    width: 50%;
+    background-color: rgb(239, 236, 236);
+    min-height: 775px;
+}
+
+#mainText{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    background-color: transparent;
+    font-size: 60px;
+    color: #222222; 
+    margin-top: 12px;
+    margin-left: 10%;
+}
+#mainText1{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    background-color: transparent;
+    font-size: 70px;
+    color: #4fb9af; 
+    margin-top: 12px;
+    margin-left: 10%;
+}
+
+.button .btn{
+  background-color: #4fb9af;
+  color: #222222;
+  font-family: 'Lucida Grande';
+  font-size: 200%;
+  height: 75px;
+  border: 2px whitesmoke;
+  border-radius: 5px; /*This rounds the edges*/
+  margin-left: 18%;
+  margin-top: 10%;
+}
+
+.button .btn:hover
+{
+    background-color: #222222;
+    color: #4fb9af;
+    height: 75px;
+    border: 2px whitesmoke;
+    border-radius: 5px; /*This rounds the edges*/
+}
+.button #btnText{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 45px;
+}
+/*right side*/
+#rightSide{
+    float: right;
+    width: 50%;
+    background-color: rgb(239, 236, 236);
+    min-height: 775px;
+}
+#userImage img{
+    margin-top: 5%;
+    margin-left: 13%;
+    width: 75%; /*430px;*/
+    height: 50%/*340px;*/
+}
+
+/*****************************************************************************************************************/
+/*Dashboard Page*/
+#dashboardPage{
+    min-height: 775px;
+}
+
+#pageTitle{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 60px;
+    color: #46a39a; 
+    margin-top: 12px;
+    margin-left: 2%;
+}
+#myChart{
+    
+    margin-left: 5%;
+    max-width: 90%;
+    max-height: 70%;
+}
+
+/*****************************************************************************************************************/
+/*Transactions Page*/
+#loginText{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 80px;
+    color: #46a39a; 
+    margin-top: 10%;
+    margin-left: 5%;
+    text-align: center;
+}
+#loginText2{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 60px;
+    color: #222222; 
+    margin-top: 12px;
+    margin-left: 5%;
+    text-align: center;
+}

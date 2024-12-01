@@ -8,7 +8,6 @@
   <% foodTotal += Datalist[count].Amount  %>
 <% } %>
 <% } %>  
-<%= foodTotal %>
 
 <!--Calculate travel total-->
 <% var travelTotal = 0 %>
@@ -17,7 +16,6 @@
   <% travelTotal += Datalist[count].Amount  %>
 <% } %>
 <% } %>  
-<%= travelTotal %>
 
 <!--Calculate housing total-->
 <% var housingTotal = 0 %>
@@ -26,7 +24,6 @@
   <% housingTotal += Datalist[count].Amount  %>
 <% } %>
 <% } %>  
-<%= housingTotal %>
 
 <!--Calculate personal total-->
 <% var personalTotal = 0 %>
@@ -35,7 +32,6 @@
   <% personalTotal += Datalist[count].Amount  %>
 <% } %>
 <% } %>  
-<%= personalTotal %>
 
 <!--Calculate subscriptions total-->
 <% var subTotal = 0 %>
@@ -44,7 +40,6 @@
   <% subTotal += Datalist[count].Amount  %>
 <% } %>
 <% } %>  
-<%= subTotal %>
 
 <!--Calculate subscriptions total-->
 <% var misTotal = 0 %>
@@ -53,33 +48,35 @@
   <% misTotal += Datalist[count].Amount  %>
 <% } %>
 <% } %>  
-<%= misTotal %>
 
-<canvas id="myChart"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div id="dashboardPage">
+  <p id="pageTitle">View Expenses By Category  </p>
+  <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-  const ctx = document.getElementById('myChart');
+    <script>
+      const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Food', 'Travel', 'Housing', 'Personal', 'Subscriptions', 'Miscellaneous'],
-      datasets: [{
-        label: 'Expense',
-        data: [<%= foodTotal %>, <%=travelTotal%>, <%=housingTotal%>, <%= personalTotal%>, <%=subTotal%>, <%=misTotal %>],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Food', 'Travel', 'Housing', 'Personal', 'Subscriptions', 'Miscellaneous'],
+          datasets: [{
+            label: 'Expense',
+            data: [<%= foodTotal %>, <%=travelTotal%>, <%=housingTotal%>, <%= personalTotal%>, <%=subTotal%>, <%=misTotal %>],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
-      }
-    }
-  });
-</script>
+      });
+    </script>
+</div>
 
 
 

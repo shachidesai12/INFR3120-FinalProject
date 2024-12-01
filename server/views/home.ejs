@@ -3,24 +3,23 @@
 
 <!--home section-->
 <section id="home">
-    <div class="home container">
-      <div class="homeContent">
-        <div class="textContent">
-        </br>
-        </br>
-            <h1>Manage Your  <span></span></h1>
-            <h1>Expenses Easily With <span></span></h1>
-            <h1 style="color: #4fb9af;"> <span>EXPENSE TRACKER </span></h1> <br><br>
-            <div class="button">
-                <a href="/dashboard" class="btn">View your Dashboard(button)</a>
-            </div>
-        </div>
-                
-        <div class="userImage">
-            <img src="/Assets/images/dashboard_images.png" alt="dashboard_images" height="300" width="350" class="dashboardImg"/>
-        </div>
-      </div>
+  <div id="leftSide">
+    </br>
+    </br>
+      <p id="mainText">Manage Your  </p>
+      <p id="mainText">Expenses Easily With  </p>
+      <p id="mainText1">EXPENSE TRACKER  </p>
+          <div class="button">
+              <a href="/dashboard" class="btn"><span id="btnText">View your Dashboard</span>
+              </a>
+          </div>
+  </div>
+
+  <div id="rightSide">        
+     <figure id="userImage">
+        <img src="/Assets/images/dashboard_images.png" alt="dashboard_images" height="300" width="350" class="dashboardImg"/>
+     </figure>
     </div>
-  </section>
+</section>
 
   <%- include Partials/footer.ejs %>

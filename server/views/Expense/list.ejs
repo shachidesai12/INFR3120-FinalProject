@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col py-3">
             <% if (isLoggedIn) { %>
-                <h1><%= title %></h1>
+                <p id="pageTitle"><%= title %></p>
                 <br>
                 <a href="/transactions/add" class="btn btn-primary" role="button">
                     <i class="fas fa-plus-circle"></i> Add Expense
@@ -47,8 +47,8 @@
                     </tbody>
                 </table>
             <% } else { %>
-                <h1>Login to view transactions</h1>
-               
+                <p id="loginText">Please Login To View Transactions  </p>
+                <p id="loginText2">Click on Login in Top Right Corner  </p>
             <% } %>
         </div>
     </div>
