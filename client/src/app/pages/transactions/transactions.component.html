@@ -1,1 +1,62 @@
-<p>transactions works!</p>
+
+<main class="container">
+    <div class="row">
+        <div class="col py-3">
+            <!-- Assuming the user is logged in for this static example -->
+            <p id="pageTitle">Your Expenses</p>
+            <br>
+            <a href="/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Expense
+            </a>
+            <table class="table table-bordered table-striped table-hover mt-3">
+                <!-- Table Header -->
+                <thead>
+                    <tr class="d-flex">
+                        <th class="text-center col-2">Name</th>
+                        <th class="text-center col-2">Amount</th>
+                        <th class="text-center col-1">Day</th>
+                        <th class="text-center col-1">Month</th>
+                        <th class="text-center col-1">Year</th>
+                        <th class="text-center col-2">Category</th>
+                        <th class="text-center col-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex">
+                        <td class="text-center col-2">Groceries</td>
+                        <td class="text-center col-2">$150.00</td>
+                        <td class="text-center col-1">15</td>
+                        <td class="text-center col-1">10</td>
+                        <td class="text-center col-1">2023</td>
+                        <td class="text-center col-2">Food</td>
+                        <td class="text-center col-2">
+                            <a href="/transactions/edit/1" class="btn btn-primary btn-sm" aria-label="Edit expense">
+                                <i class="fas fa-pencil-alt"></i> Edit
+                            </a>
+                            <a href="/transactions/delete/1" class="btn btn-danger btn-sm" aria-label="Delete expense">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class="text-center col-2">Utilities</td>
+                        <td class="text-center col-2">$75.00</td>
+                        <td class="text-center col-1">10</td>
+                        <td class="text-center col-1">10</td>
+                        <td class="text-center col-1">2023</td>
+                        <td class="text-center col-2">Bills</td>
+                        <td class="text-center col-2">
+                            <a href="/transactions/edit/2" class="btn btn-primary btn-sm" aria-label="Edit expense">
+                                <i class="fas fa-pencil-alt"></i> Edit
+                            </a>
+                            <a href="/transactions/delete/2" class="btn btn-danger btn-sm" aria-label="Delete expense">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

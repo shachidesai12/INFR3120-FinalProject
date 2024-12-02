@@ -22,6 +22,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { HelpComponent } from './pages/help/help.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AddComponent } from './pages/add/add.component';
 
 const routeComponents = {
     home: HomeComponent,
@@ -29,6 +30,7 @@ const routeComponents = {
     transactions: TransactionsComponent,
     help: HelpComponent,
     login: LoginComponent,
+    add: AddComponent
 };
 
 export const routes: Routes = [
@@ -37,5 +39,6 @@ export const routes: Routes = [
     { path: 'transactions', component: routeComponents.transactions },
     { path: 'help', component: routeComponents.help },
     { path: 'login', component: routeComponents.login },
+    { path: 'add', component: routeComponents.add },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

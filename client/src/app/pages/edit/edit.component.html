@@ -1,0 +1,51 @@
+<!-- Content for edit page -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1>Edit Expense</h1> <!-- Static title -->
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Expense Name</label>
+                    <input type="text" class="form-control" id="nameTextField"
+                    placeholder="Enter Expense Name" name="Name" value="Sample Expense" required>
+                </div>
+                <div class="form-group">
+                    <label for="amountTextField">Expense Amount</label>
+                    <input type="text" class="form-control" id="amountTextField"
+                    placeholder="Enter the Amount" name="Amount" value="$100.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="dayTextField">Day</label>
+                    <input type="text" class="form-control" id="dayTextField"
+                    placeholder="Enter the Day" name="Day" value="15" required>
+                </div>
+                <div class="form-group">
+                    <label for="monthTextField">Month</label>
+                    <input type="text" class="form-control" id="monthTextField"
+                    placeholder="Enter the Month" name="Month" value="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="yearTextField">Year</label>
+                    <input type="text" class="form-control" id="yearTextField"
+                    placeholder="Enter the Year" name="Year" value="2023" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryTextField">Category</label><br>
+                    <select name="Category" class="form-control">
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Housing">Housing</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Subscriptions">Subscriptions</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <i class="fas fa-edit"></i>
+
+                <button class="btn btn-warning" type="button" onclick="window.location.href='/'">Cancel</button>
+                <i class="fas fa-undo"></i>
+            </form>
+        </div>
+    </div>
+</div>
