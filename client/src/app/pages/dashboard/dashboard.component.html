@@ -1,1 +1,88 @@
-<p>dashboard works!</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Expenses By Category</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+    <!-- Header and Navigation -->
+    <header>
+        <!-- Include your header content here -->
+    </header>
+    <nav>
+        <!-- Include your navigation content here -->
+    </nav>
+
+    <!-- Calculate totals (replace these with actual values) -->
+    <script>
+        var foodTotal = 100; // Replace with actual total
+        var travelTotal = 200; // Replace with actual total
+        var housingTotal = 300; // Replace with actual total
+        var personalTotal = 150; // Replace with actual total
+        var subTotal = 50; // Replace with actual total
+        var misTotal = 75; // Replace with actual total
+    </script>
+
+    <div id="dashboardPage">
+        <p id="pageTitle">View Expenses By Category</p>
+        <canvas id="myChart"></canvas>
+        <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Food', 'Travel', 'Housing', 'Personal', 'Subscriptions', 'Miscellaneous'],
+                    datasets: [{
+                        label: 'Expense',
+                        data: [foodTotal, travelTotal, housingTotal, personalTotal, subTotal, misTotal],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <!--  Backend API Endpoint: Ensure your server exposes an API endpoint to fetch expense data from MongoDB. For example:
+    <section id="dashboardPage">
+        <p id="pageTitle">View Expenses By Category</p>
+        <canvas id="myChart"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      </section>
+       -->
+<!--  Service in Angular: Create a service in Angular to call this API endpoint and retrieve data.
+Example: expense.service.ts
+       import { Injectable } from '@angular/core';
+       import { HttpClient } from '@angular/common/http';
+       import { Observable } from 'rxjs';
+       
+       @Injectable({
+         providedIn: 'root',
+       })
+       export class ExpenseService {
+         private apiUrl = 'http://localhost:3000/api/expenses'; // Adjust your backend URL
+       
+         constructor(private http: HttpClient) {}
+       
+         getExpenses(): Observable<any[]> {
+           return this.http.get<any[]>(this.apiUrl);
+         }
+       }
+        -->
+
+        <!--Backend API Endpoint: Ensure your server exposes an API endpoint to fetch expense data from MongoDB. For example:
+         // In your Node.js/Express backend
+app.get('/api/expenses', async (req, res) => {
+    try {
+        const expenses = await Expense.find({});
+        res.json(expenses);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching expenses', error });
+    }
+}); -->
