@@ -1,47 +1,29 @@
-<%- include ../Partials/header.ejs %>
-<%- include ../Partials/main_nav.ejs %>
-
-
 <main class="container">
     <!--Message Area-->
-    <% if (message.lenth > 0) { %>
-        <div class="alert alter-danger">
-            <%= message %>
-        </div>
-    <% } %>
+    <div class="alert alert-danger" style="display: <%= message.length > 0 ? 'block' : 'none' %>;">
+        <%= message %>
+    </div>
 
-     <div class="row">
+    <div class="row">
         <div class="offset-md-4 col-md-4">
             <h1>Please Register</h1>
             <form method="post" autocomplete="off">
                 <fieldset class="form-group">
                     <label for="username"></label>
-                    <input type="text" class="form-control"
-                    name="username" 
-                    placeholder="Enter username"
-                    id="username" required autofocus>
+                    <input type="text" class="form-control" name="username" placeholder="Enter username" id="username" required autofocus>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="password"></label>
-                    <input type="password" class="form-control"
-                    name="password" 
-                    placeholder="Enter password"
-                    id="password" required>
+                    <input type="password" class="form-control" name="password" placeholder="Enter password" id="password" required>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="email"></label>
-                    <input type="email" class="form-control"
-                    name="email" 
-                    placeholder="Enter your Email"
-                    id="email" required>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your Email" id="email" required>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="displayName"></label>
-                    <input type="text" class="form-control"
-                    name="displayName" 
-                    placeholder="Enter your display name"
-                    id="displayName" required>
+                    <input type="text" class="form-control" name="displayName" placeholder="Enter your display name" id="displayName" required>
                 </fieldset>
                 
                 <fieldset class="form-group text-right">
@@ -52,6 +34,3 @@
         </div>
     </div>
 </main>
-
-
-  <%- include ../Partials/footer.ejs %>

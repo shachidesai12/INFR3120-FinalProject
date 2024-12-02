@@ -23,6 +23,8 @@ import { TransactionsComponent } from './pages/transactions/transactions.compone
 import { HelpComponent } from './pages/help/help.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddComponent } from './pages/add/add.component';
+import { EditComponent } from './pages/edit/edit.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routeComponents = {
     home: HomeComponent,
@@ -30,7 +32,9 @@ const routeComponents = {
     transactions: TransactionsComponent,
     help: HelpComponent,
     login: LoginComponent,
-    add: AddComponent
+    add: AddComponent,
+    edit: EditComponent,
+    register: RegisterComponent
 };
 
 export const routes: Routes = [
@@ -39,6 +43,8 @@ export const routes: Routes = [
     { path: 'transactions', component: routeComponents.transactions },
     { path: 'help', component: routeComponents.help },
     { path: 'login', component: routeComponents.login },
+    { path: 'register', component: routeComponents.register},
     { path: 'add', component: routeComponents.add },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'edit', component: routeComponents.edit },
+    { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
