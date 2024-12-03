@@ -5,34 +5,40 @@
 <section id="contact">
     <div class="contact container">
       <div class="contact-header">
-        <h1 class="sectionTitle">Contact <span> Me</span></h1>
+        <p id="pageTitle">Contact Us  </p>
       </div>
       <div class="contactItems">
         <div class="contactItem">
           <div class="contactInfo">
             <form action="mailto:patelhetvij@gmail.com" method="post" enctype="text/plain">
-                <p>
-                    <label for="name">Name:</label><br>
+                <div id="leftSideForm">
+                  <p>
+                    <p id="formTitle">Name:</p>
+                    <!--<label for="name"></label><br>-->
                     <input type="text" id="name" name="name" placeholder="Your Name" required />
                 </p>
                 <p>
-                    <label for="email">Email:</label><br>
+                    <p id="formTitle">Email:</p>
+                    <!--<label for="email">Email:</label><br>-->
                     <input type="Email" id="email" name="Email" placeholder="Your Email Address" required />
                 </p>
                 <p>
-                    <label for="subject">Subject:</label><br>
+                    <p id="formTitle">Subjects:</p>
+                    <!--<label for="subject">Subject:</label><br>-->
                     <input type="text" id="subject" name="Subject" placeholder="Subject" required />
                 </p>
-                <p>
-                    <label for="message" >Concerns:</label><br>
-                    <textarea id="message" name="message" cols="40" rows="8" placeholder="Type your concerns here" required></textarea>
-                </p>
-    
-              
-              <div class="buttons">
-                <button class="btn" type="submit">Submit</button>
-                <button class="btn" type="reset">Reset</button>
-              </div>
+                </div>
+                <div id="rightSideForm">
+                  <p>
+                    <p id="formTitle">Concerns:</p>
+                    <!--<label for="message" >Concerns:</label><br>-->
+                    <textarea id="message" name="message" cols="60" rows="8" placeholder="Type your concerns here" required></textarea>
+                  </p>
+                  <div class="buttons">
+                    <button class="btn" type="submit">Submit</button>
+                    <button class="btn" type="reset">Reset</button>
+                  </div>
+                </div>
             </form>
           </div>
         </div>
