@@ -1,0 +1,51 @@
+#pageTitle{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 60px;
+    color: #46a39a; 
+    margin-top: 12px;
+    margin-left: 2%;
+}
+
+.buttons .btn{
+    background-color: #4fb9af;
+    color: #222222;
+    font-family: 'Lucida Grande';
+    font-size: 130%;
+    height: 40px;
+    border: 2px whitesmoke;
+    border-radius: 5px; /*This rounds the edges*/
+    margin-left: 10px;
+  }
+
+  .buttons .btn:hover {
+    background-color: #222222;
+    color: #4fb9af;
+    font-family: 'Lucida Grande';
+    font-size: 130%;
+    height: 40px;
+    border: 2px whitesmoke;
+    border-radius: 5px; /*This rounds the edges*/
+    margin-left: 10px;
+  }
+
+  .btn-register {
+    display: inline-block;
+    background-color: #4fb9af; /* Button background color */
+    color: #222222; /* Text color */
+    font-size: 14px; /* Font size */
+    margin-top: 10px;
+    
+}
+
+.btn-register:hover {
+    background-color: #3a8f88; /* Slightly darker shade for hover */
+    color: #ffffff; /* Change text color on hover */
+}
+
+.regContainer{
+    background-color: #222222;
+    min-width: 1500px;
+    min-height: 820px;
+
+}

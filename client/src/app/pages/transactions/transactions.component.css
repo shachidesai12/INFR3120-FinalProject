@@ -1,0 +1,19 @@
+/*Transactions Page*/
+#loginText{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 70px;
+    color: #46a39a; 
+    margin-top: 10%;
+    margin-left: 5%;
+    text-align: center;
+}
+#loginText2{
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    font-size: 50px;
+    color: #222222; 
+    margin-top: 12px;
+    margin-left: 5%;
+    text-align: center;
+}
