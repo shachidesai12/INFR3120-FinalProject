@@ -53,7 +53,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-  callbackURL: "127.0.0.1:1000/google/callback"
+  callbackURL: "https://infr3120-finalproject-1.onrender.com/google/callback"
 }, 
 // async (accessToken, refreshToken, profile, done) => {
 //   console.log('Google Profile:',profile)
@@ -81,11 +81,11 @@ passport.use(new GoogleStrategy({
 // }));
 
 //Function to compare the Google id with our database 
-function async(request, accessToken, refreshToken, profile, done) {
+async(request, accessToken, refreshToken, profile, done) => {
   console.log(profile)
-  process.nextTick(function() { //keep event in queue
+  //process.nextTick(function() { //keep event in queue
     // find the user in the database based on their facebook id
-  user.findOne({ googleId:profile.id }, function(err, user) {
+    const user = await user.findOne({ googleId:profile.id }, function(err, user) {
     //if there is an error, stop everything and return that
     // ie an error connecting to the database
     if (err)
@@ -115,7 +115,7 @@ function async(request, accessToken, refreshToken, profile, done) {
                 });
               }
           });
-        });
+        
 }));
 
 

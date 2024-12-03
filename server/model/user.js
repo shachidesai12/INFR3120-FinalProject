@@ -8,7 +8,6 @@ let user=mongoose.Schema({
         type:String,
         default:"",
         trim:true,
-        required: 'Username is required'
     },
     /*password:
     {
@@ -22,14 +21,12 @@ let user=mongoose.Schema({
         type:String,
         default:"",
         trim:true,
-        required: 'DisplayName is required'
     },
     email:
     {
         type:String,
         default:"",
         trim:true,
-        required: 'Email is required'
     },
     
     googleId: {
