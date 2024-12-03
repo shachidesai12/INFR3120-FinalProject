@@ -85,7 +85,7 @@ function(request, accessToken, refreshToken, profile, done) {
   console.log(profile)
   process.nextTick(function() { //keep event in queue
     // find the user in the database based on their facebook id
-    user.findOne({ 'googleId' :profile.id }, function(err, user) {
+    user.findOne({ 'googleId':profile.id }, function(err, user) {
     //if there is an error, stop everything and return that
     // ie an error connecting to the database
     if (err)
@@ -104,7 +104,7 @@ function(request, accessToken, refreshToken, profile, done) {
  
       //set all of the Google information in our user model
       newUser.googleId = profile.id; // set the users Google id
-      newUser.displayName = profile.displayName
+      //newUser.displayName = profile.displayName
       newUser.email = profile.emails[0].value
  
     //Save the new user's information
