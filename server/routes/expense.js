@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 let Expense = require('../model/expense.js')
 let expenseController = require('../controllers/expense.js')
-//let mongoose = require('mongoose');
-
-//Connect with expense model 
-//let Expense = require('../model/expense');
-//let expenseController = require('../controllers/expense');
 
 /*CRUD Operations */
 

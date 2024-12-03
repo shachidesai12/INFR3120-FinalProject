@@ -1,13 +1,5 @@
 require('dotenv').config();
 
-
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// const config ={
-
-// }
-
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -93,86 +85,6 @@ passport.use(
   )
 );
 
-
-
-// passport.use(new GoogleStrategy({
-//   clientID: process.env.clientID,
-//   clientSecret: process.env.clientSecret,
-//   callbackURL: "http://127.0.0.1:1000/oauth2/redirect/google"
-// }, 
-// // async (accessToken, refreshToken, profile, done) => {
-// //   console.log('Google Profile:',profile)
-// //   try {
-// //     // Check if the user exists based on Google ID
-// //     let currentUser = await user.findOne({ 'googleId': profile.id });
-
-// //     if (!currentUser) {
-// //       const newUser = new user({
-// //         'googleId': profile.id,
-// //         'username': profile.emails[0].value,
-// //         'displayName': profile.displayName,
-// //         'email': profile.emails[0].value
-// //     });
-// //       await newUser.save();
-// //       return done(null, newUser); // Create a new user if it doesn't exist
-// //     }
-// //     return done(null, currentUser); // User already exists
-    
-// //     console.log('googleId')
-    
-// // } catch (err) {
-// //     done(err, null);
-// // }
-// // }));
-
-// //Function to compare the Google id with our database 
-// async(request, accessToken, refreshToken, profile, done) => {
-//   console.log("Line 85")
-//   console.log(profile)
-
-//   //process.nextTick(function() { //keep event in queue
-//     // find the user in the database based on their facebook id
-//     await user.findOne({ 'email':profile.email }, function(err, user) {
-//     //if there is an error, stop everything and return that
-//     // ie an error connecting to the database
-//     /*if (err)
-//       console.log("Line 92 Error")
-//         return done(err);*/
-//     // if the user is found, then log them in
-//     if (user) {
-//       console.log("Line98") 
-//         console.log("user found")
-//         console.log(user)
-//     return done (null, user); // user found, return that user
-//     } 
- 
-//     else 
-//     {
-//       console.log("Line105") 
-//     // if there is no user found with that Google id, create them
-//     var newUser = new user();
- 
-//       //set all of the Google information in our user model
-//       newUser.email = profile.email; // set the users Google id
-//       //newUser.displayName = profile.displayName
-//       //newUser.email = profile.emails[0].value
- 
-//     //Save the new user's information
-//     newUser.save(function (err){
-//         if (err)
-//           console.log("adding the user to db failed");
-//             throw err;
-//             return done(null, newUser);
-//                 });
-//               }
-//           }).then(user=>{
-//             console.log("Line 123")
-//           });
-        
-// }));
-
-
-
 //set-up express session
 app.use(session({
   secret:"SomeSecret",
@@ -185,14 +97,6 @@ app.use(flash());
 // sereialze and deserialize the user information
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
-
-// passport.serializeUser((user, done) =>{
-//   done(null,user.id);
-// });
-
-// passport.deserializeUser(async(id,done) =>{
-//   const user = await user.findById(id);
-// });
 
 //initialize passport
 app.use(passport.initialize());
