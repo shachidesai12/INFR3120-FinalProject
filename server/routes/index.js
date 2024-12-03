@@ -38,10 +38,8 @@ router.get('/help', function(req, res, next) {
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-
-
 // Google OAuth callback route
-router.get('/auth/google/callback', 
+router.get('/oauth2/redirect/google', 
     passport.authenticate('google', { failureRedirect: '/login' }),
     (req, res) => {
       console.log('Authenticated user:',req.user);

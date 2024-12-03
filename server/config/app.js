@@ -1,13 +1,5 @@
 require('dotenv').config();
 
-
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// const config ={
-
-// }
-
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -50,96 +42,48 @@ let localStrategy = passportLocal.Strategy;
 //google authentication
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-passport.use(new GoogleStrategy({
-  clientID: process.env.clientID,
-  clientSecret: process.env.clientSecret,
-  callbackURL: "https://infr3120-finalproject-1.onrender.com/google/callback"
-}, 
-// async (accessToken, refreshToken, profile, done) => {
-//   console.log('Google Profile:',profile)
-//   try {
-//     // Check if the user exists based on Google ID
-//     let currentUser = await user.findOne({ 'googleId': profile.id });
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.clientID,
+      clientSecret: process.env.clientSecret,
+      callbackURL: "http://127.0.0.1:1000/oauth2/redirect/google",
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        console.log("Google Profile:", profile);
 
-//     if (!currentUser) {
-//       const newUser = new user({
-//         'googleId': profile.id,
-//         'username': profile.emails[0].value,
-//         'displayName': profile.displayName,
-//         'email': profile.emails[0].value
-//     });
-//       await newUser.save();
-//       return done(null, newUser); // Create a new user if it doesn't exist
-//     }
-//     return done(null, currentUser); // User already exists
-    
-//     console.log('googleId')
-    
-// } catch (err) {
-//     done(err, null);
-// }
-// }));
+        // Extract email from profile
+        const email = profile.emails && profile.emails[0]?.value;
+        if (!email) {
+          return done(new Error("Email not provided by Google"), null);
+        }
 
-//Function to compare the Google id with our database 
-async(request, accessToken, refreshToken, profile, done) => {
-  console.log(profile)
-  //process.nextTick(function() { //keep event in queue
-    // find the user in the database based on their facebook id
-    const user = await user.findOne({ googleId:profile.id }, function(err, user) {
-    //if there is an error, stop everything and return that
-    // ie an error connecting to the database
-    if (err)
-        return done(err);
-    // if the user is found, then log them in
-    if (user) {
-        console.log("user found")
-        console.log(user)
-    return done (null, user); // user found, return that user
-    } 
- 
-    else 
-    { 
-    // if there is no user found with that Google id, create them
-    var newUser = new user();
- 
-      //set all of the Google information in our user model
-      newUser.googleId = profile.id; // set the users Google id
-      //newUser.displayName = profile.displayName
-      newUser.email = profile.emails[0].value
- 
-    //Save the new user's information
-    newUser.save(function (err){
-        if (err)
-            throw err;
-            return done(null, newUser);
-                });
-              }
-          });
-        
-}));
+        // Check if the user exists in the database
+        let existingUser = await user.findOne({ email: email });
+        if (existingUser) {
+          console.log("User found:", existingUser);
+          return done(null, existingUser);
+        }
 
+        // Create a new user if none exists
+        const newUser = new user({
+          googleId: profile.id,
+          username: email,
+          displayName: profile.displayName,
+          email: email,
+        });
 
-
-//set-up express session
-app.use(session({
-  secret:"SomeSecret",
-  saveUninitialized:false,
-  resave:false
-}))
-
-//initialize the flash
-app.use(flash());
-// sereialze and deserialize the user information
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
-
-// passport.serializeUser((user, done) =>{
-//   done(null,user.id);
-// });
-
-// passport.deserializeUser(async(id,done) =>{
-//   const user = await user.findById(id);
-// });
+        const savedUser = await newUser.save();
+        console.log("New user created:", savedUser);
+        return done(null, savedUser);
+      } catch (err) {
+        console.error("Error in GoogleStrategy callback:", err);
+        return done(err, null);
+      }
+    }
+  )
+);
 
 //initialize passport
 app.use(passport.initialize());
